@@ -16,10 +16,14 @@ public class InputProcessing {
         this.view = view;
     }
 
-    public String[] processInput() {
+    public String processNameInput() {
         this.firstName = inputStringWithScanner(view.bundle.getString(ConstantString.INPUT_DATA) + view.bundle.getString(ConstantString.INPUT_FIRST_NAME_DATA), String.valueOf(view.bundle.getLocale()).equals("eng") ? view.bundle.getString(ConstantString.NAME_ENG) : view.bundle.getString(ConstantString.NAME_UKR));
+        return this.firstName;
+    }
+
+    public String processLoginInput() {
         this.login = inputStringWithScanner(view.bundle.getString(ConstantString.INPUT_DATA) + view.bundle.getString(ConstantString.INPUT_LOGIN_DATA), view.bundle.getString(ConstantString.LOGIN));
-        return new String[] {firstName, login};
+        return login;
     }
 
     public String inputStringWithScanner(String message, String regex) {

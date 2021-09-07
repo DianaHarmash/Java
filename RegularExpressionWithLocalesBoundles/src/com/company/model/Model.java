@@ -13,7 +13,21 @@ public class Model {
     public String getLogin() {
         return login;
     }
-    public void setLogin(String login) {
-        this.login = login;
+
+    private boolean isThereALogin(String login) {
+        for (DBNoteBook user : DBNoteBook.values()) {
+            if (user.login().equals(login)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void setLogin(String login) throws LoginIsSetException {
+        if (!isThereALogin(login)) {
+            this.login = login;
+        } else {
+            throw new LoginIsSetException("The login is already exist");
+        }
     }
 }

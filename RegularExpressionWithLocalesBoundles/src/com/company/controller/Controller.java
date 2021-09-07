@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import com.company.model.LoginIsSetException;
 import com.company.model.Model;
 import com.company.view.View;
 
@@ -14,11 +15,22 @@ public class Controller {
         this.view = view;
     }
 
+    private boolean setLogin(String login) {
+        try {
+            model.setLogin(login);
+            return true;
+        } catch (LoginIsSetException e) {
+            System.out.println(e.fillInStackTrace());
+            return false;
+        }
+    }
+
     public void processUser() {
         Scanner scanner = new Scanner(System.in);
         InputProcessing inputProcessing = new InputProcessing(view, scanner);
-        String[] nameAndLogin = inputProcessing.processInput();
-        model.setFirstName(nameAndLogin[0]);
-        model.setLogin(nameAndLogin[1]);
+        model.setFirstName(inputProcessing.processNameInput());
+        do {
+
+        } while (!setLogin(inputProcessing.processLoginInput()));
     }
 }
