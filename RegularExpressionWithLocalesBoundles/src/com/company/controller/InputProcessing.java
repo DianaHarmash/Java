@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import com.company.ConstantString;
 import com.company.view.View;
 
 import java.util.Scanner;
@@ -16,8 +17,8 @@ public class InputProcessing {
     }
 
     public String[] processInput() {
-        this.firstName = inputStringWithScanner(view.bundle.getString("input.data") + view.bundle.getString("input.first.name.data.regexp"), String.valueOf(view.bundle.getLocale()).equals("eng") ? view.bundle.getString("name.eng.regexp") : view.bundle.getString("name.ukr.regexp"));
-        this.login = inputStringWithScanner(view.bundle.getString("input.data") + view.bundle.getString("input.login.data.regexp"), view.bundle.getString("login.regexp"));
+        this.firstName = inputStringWithScanner(view.bundle.getString(ConstantString.INPUT_DATA) + view.bundle.getString(ConstantString.INPUT_FIRST_NAME_DATA), String.valueOf(view.bundle.getLocale()).equals("eng") ? view.bundle.getString(ConstantString.NAME_ENG) : view.bundle.getString(ConstantString.NAME_UKR));
+        this.login = inputStringWithScanner(view.bundle.getString(ConstantString.INPUT_DATA) + view.bundle.getString(ConstantString.INPUT_LOGIN_DATA), view.bundle.getString(ConstantString.LOGIN));
         return new String[] {firstName, login};
     }
 
@@ -25,7 +26,7 @@ public class InputProcessing {
         view.printMessage(message);
         String string;
         while (!(string = String.valueOf(scanner.nextLine())).matches(regex.replace("\"", ""))) {
-            view.printMessage(view.bundle.getString("input.wrong.data"));
+            view.printMessage(view.bundle.getString(ConstantString.INPUT_WRONG_DATA));
         }
         return string;
     }
