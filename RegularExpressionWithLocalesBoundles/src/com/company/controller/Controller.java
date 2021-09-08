@@ -15,6 +15,13 @@ public class Controller {
         this.view = view;
     }
 
+    /**
+     * A method which sets login
+     * @param login
+     * @return true if DB has no such login
+     *         false if login like this one is already in DB
+     */
+
     private boolean setLogin(String login) {
         try {
             model.setLogin(login);
@@ -24,6 +31,10 @@ public class Controller {
             return false;
         }
     }
+
+    /**
+     * A method which is in charge of setting login and password
+     */
 
     public void processUser() {
         Scanner scanner = new Scanner(System.in);
